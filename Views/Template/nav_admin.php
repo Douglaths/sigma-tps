@@ -42,8 +42,9 @@
                     <i class="app-menu__icon bi bi-people"></i>
                     <span class="app-menu__label">Usuarios</span></a></li>
 
-        <li><a class="app-menu__item" href="competencias" data-toggle=><i class="app-menu__icon bi bi-award-fill"></i><span class="app-menu__label">Competencias</span><i class=></i></a>
-        </li>
+                    <li><a class="app-menu__item " href="<?=base_url();?>/competencias">
+                    <i class="app-menu__icon bi bi-card-checklist"></i>
+                    <span class="app-menu__label">Competencias</span></a></li>
 
         <li><a class="app-menu__item" href="perfiles" data-toggle=><i class="app-menu__icon bi bi-person-circle"></i><span class="app-menu__label">Perfiles</span><i class=></i></a>
         </li>
