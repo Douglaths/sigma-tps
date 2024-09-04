@@ -17,10 +17,12 @@ document.addEventListener('DOMContentLoaded', function(){
             {"data":"ideusuario"},
             {"data":"identificacion"},
             {"data":"nombres"},
+            {"data":"apellidos"},
+            {"data":"telefono"},
+            {"data":"email"},
             {"data":"nombrerol"},
             {"data":"status"},
             {"data":"options"}
-
         ],
         'dom': 'lBfrtip',
         'buttons': [
@@ -61,10 +63,13 @@ document.addEventListener('DOMContentLoaded', function(){
             var intIdeUsuario = document.querySelector('#ideUsuario').value;
             let strIdentificacionUsuario = document.querySelector('#txtIdentificacionUsuario').value;
             let strNombresUsuario = document.querySelector('#txtNombresUsuario').value;
+            let strApellidosUsuario = document.querySelector('#txtApellidosUsuario').value;
+            let strTelefonoUsuario = document.querySelector('#txtTelefonoUsuario').value;
+            let strEmailUsuario = document.querySelector('#txtEmailUsuario').value;
             let strRolUsuario = document.querySelector('#txtRolUsuario').value;
             let intStatus = document.querySelector('#listStatus').value;
             
-            if(strIdentificacionUsuario == '' || strRolUsuario == '' || strNombresUsuario == '')
+            if(strIdentificacionUsuario == '' || strRolUsuario == '' || strNombresUsuario == '' || strApellidosUsuario == '' || strTelefonoUsuario == '' || strEmailUsuario == '')
             {
                 swal("Atención", "Todos los campos son obligatorios." , "error");
                 return false;
@@ -93,7 +98,7 @@ document.addEventListener('DOMContentLoaded', function(){
                             htmlStatus = intStatus == 1 ? 
                             '<span class="badge text-bg-success">Activo</span>' : 
                             '<span class="badge text-bg-danger">Inactivo</span>';
-                            // tableUsuarios.api().ajax.reload();
+                            tableUsuarios.api().ajax.reload();
                            rowTable.cells[1].textContent =  strIdentificacionUsuario;
                         //    rowTable.cells[2].textContent =  strRolUsuario;
                            rowTable.cells[2].textContent = document.querySelector("#txtRolUsuario").selectedOptions[0].text;
@@ -128,7 +133,7 @@ if(document.querySelector('#txtRolUsuario')){
     request.onreadystatechange = function(){
         if(request.readyState == 4 && request.status == 200){
             document.querySelector('#txtRolUsuario').innerHTML = request.responseText;
-            // $('#txtRolUsuario').selectpicker('render');
+            //$('#txtRolUsuario').selectpicker('render');
             $('.txtRolUsuario').selectpicker('refresh');
         }
     }
@@ -182,6 +187,10 @@ function fntEditInfo(element, ideusuario){
             {
                 document.querySelector("#ideUsuario").value = objData.data.ideusuario;
                 document.querySelector("#txtIdentificacionUsuario").value = objData.data.identificacion;
+                document.querySelector("#txtNombresUsuario").value =objData.data.nombres;
+                document.querySelector("#txtApellidosUsuario").value =objData.data.apellidos;
+                document.querySelector("#txtTelefonoUsuario").value =objData.data.telefono;
+                document.querySelector("#txtEmailUsuario").value =objData.data.email;
                 document.querySelector("#txtRolUsuario").value =objData.data.idrol;
 
                 // ESTADO ACTIVO O INACTIVO

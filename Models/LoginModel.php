@@ -27,7 +27,7 @@ class LoginModel extends Mysql
     {
         $this->intIdUsuario = $iduser;
         //BUSCAR ROL
-        $sql = "SELECT tu.ideusuario,
+        $sql = "SELECT tu.ideusuario,tu.nombres,
 							tu.identificacion,
 							tu.imgperfil,
 							r.idrol,

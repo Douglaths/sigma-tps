@@ -37,6 +37,27 @@
                                     name="txtNombresUsuario" required="" maxlength="32"
                                     onkeypress="return controlTag(event);">
                             </div>
+                            <div class="modal-body">
+                                <label for="txtApellidosUsuario">Apellidos<span class="
+                                    required">*</span></label>
+                                <input type="text" class="form-control valid validText" id="txtApellidosUsuario"
+                                    name="txtApellidosUsuario" required="" maxlength="32"
+                                    onkeypress="return controlTag(event);">
+                            </div>
+                            <div class="modal-body">
+                                <label for="txtTelefonoUsuario">Telefono<span class="
+                                    required">*</span></label>
+                                <input type="text" class="form-control valid validText" id="txtTelefonoUsuario"
+                                    name="txtTelefonoUsuario" required="" maxlength="32"
+                                    onkeypress="return controlTag(event);">
+                            </div>
+                            <div class="modal-body">
+                                <label for="txtEmailUsuario">Email<span class="
+                                    required">*</span></label>
+                                <input type="text" class="form-control valid validText" id="txtEmailUsuario"
+                                    name="txtEmailUsuario" required="" maxlength="32"
+                                    onkeypress="return controlTag(event);">
+                            </div>
 
                             <div class="modal-body">
                                 <label for="txtRolUsuario">Rol</label>

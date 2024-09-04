@@ -29,6 +29,9 @@ headerAdmin($data);
                                     <th>ID</th>
                                     <th>Identificación</th>
                                     <th>Nombres</th>
+                                    <th>Apellidos</th>
+                                    <th>Telefono</th>
+                                    <th>Email</th>
                                     <th>Rol</th>
                                     <th>Estado</th>
                                     <th>Acciones</th>

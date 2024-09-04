@@ -36,6 +36,9 @@ class Usuarios extends Controllers
                 $intIdeUsuario = intval($_POST['ideUsuario']);
                 $strIdentificacionUsuario = strClean($_POST['txtIdentificacionUsuario']);
                 $strNombresUsuario = strClean($_POST['txtNombresUsuario']);
+                $strApellidosUsuario = strClean($_POST['txtApellidosUsuario']);
+                $strTelefonoUsuario = intval($_POST['txtTelefonoUsuario']);
+                $strEmailUsuario = strClean($_POST['txtEmailUsuario']);
                 $strRolUsuario = intval(strClean($_POST['txtRolUsuario']));
                 $intStatus = intval(strClean($_POST['listStatus']));
 
@@ -48,10 +51,12 @@ class Usuarios extends Controllers
                         $request_user = $this->model->insertUsuario(
                             $strIdentificacionUsuario,
                             $strNombresUsuario,
+                            $strApellidosUsuario,
+                            $strTelefonoUsuario,
+                            $strEmailUsuario,
                             $strPassword,
                             $strRolUsuario,
                             $intStatus
-
                         );
                     }
                 } else {
@@ -61,8 +66,13 @@ class Usuarios extends Controllers
                         $request_user = $this->model->updateUsuario(
                             $intIdeUsuario,
                             $strIdentificacionUsuario,
+                            $strNombresUsuario,
+                            $strApellidosUsuario,
+                            $strTelefonoUsuario,
+                            $strEmailUsuario,
                             $strRolUsuario,
-                            $intStatus
+                            $intStatus,
+                            $strPassword
                         );
                     }
                 }
