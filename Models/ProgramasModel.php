@@ -1,53 +1,50 @@
 <?php
 class ProgramasModel extends Mysql
 {
-
     private $intIdePrograma;
     private $strCodigoPrograma;
     private $strNivelPrograma;
     private $strNombrePrograma;
-    private $intHorasPrograma;
-    private $intStatus;
+    private $strHorasPrograma;
+    private $strStatus;
+    
 
     public function __construct()
     {
         parent::__construct();
     }
-/*
-    public function insertUsuario(
-        string $identificacion,
-        string $nombres,
-        string $password,
-        string $rol,
-        string $status
+
+    public function insertPrograma(
+        string $codigo,
+        string $nivel,
+        string $nombreprograma,
+        string $horasprograma
     ) {
-        $this->strIdentificacionUsuario = $identificacion;
-        $this->strNombresUsuario = $nombres;
-        $this->strPassword = $password;
-        $this->strRolUsuario = $rol;
-        $this->strStatusUsuario = $status;
+        $this->strCodigoPrograma = $codigo;
+        $this->strNivelPrograma = $nivel;
+        $this->strNombrePrograma = $nombreprograma;
+        $this->strHorasPrograma = $horasprograma;
 
         $return = 0;
-        $sql = "SELECT * FROM tbl_usuarios WHERE
-				identificacion = '{$this->strIdentificacionUsuario}'";
+        $sql = "SELECT * FROM tbl_programas WHERE
+				codigoprograma = '{$this->strCodigoPrograma}'";
         $request = $this->select_all($sql);
 
         if (empty($request)) {
 
-            // $rs = 1;
-            $query_insert = "INSERT INTO tbl_usuarios(identificacion,nombres,password,rolid,status)
-            VALUES(?,?,?,?,?)";
+            $query_insert = "INSERT INTO tbl_programas(codigoprograma,nivelprograma,nombreprograma,horasprograma)
+            VALUES(?,?,?,?)";
 
             $arrData = array(
-                $this->strIdentificacionUsuario,
-                $this->strNombresUsuario,
-                $this->strPassword,
-                $this->strRolUsuario,
-                $this->strStatusUsuario
+                $this->strCodigoPrograma,
+                $this->strNivelPrograma,
+                $this->strNombrePrograma,
+                $this->strHorasPrograma
             );
 
             $request_insert = $this->insert($query_insert, $arrData);
             $return = $request_insert;
+
         } else {
             $return = "exist";
         }
@@ -55,60 +52,55 @@ class ProgramasModel extends Mysql
     }
 
     // LISTADO DE LA TABLA
-    public function selectUsuarios()
+    public function selectProgramas()
     {
-        $whereAdmin = "";
-        if($_SESSION['idUser'] != 1 ){
-            $whereAdmin = " and p.ideusuario != 1 ";
-        }
-        $sql = "SELECT u.ideusuario,u.identificacion,u.nombres,u.rolid,u.status,r.idrol,r.nombrerol 
-                FROM tbl_usuarios u 
-                INNER JOIN rol r
-                ON u.rolid = r.idrol ".$whereAdmin;
-                // WHERE u.status != 0 ".$whereAdmin;
-                $request = $this->select_all($sql);
-                return $request;
+        $sql = "SELECT * FROM tbl_programas WHERE status != 0";
+        $request = $this->select_all($sql);
+        return $request;
     }
 
-    public function selectUsuario(int $ideusuario){
-        $this->intIdeUsuario = $ideusuario;
-        $sql = "SELECT u.ideusuario,u.identificacion,u.nombres,u.rolid,u.status,r.idrol,r.nombrerol
-                FROM tbl_usuarios u
-                INNER JOIN rol r
-                ON u.rolid = r.idrol
-                WHERE u.ideusuario = $this->intIdeUsuario";
+    //VISTA INFORMACIÓN PROGRAMA
+    public function selectPrograma(int $ideprograma)
+    {
+        $this->intIdePrograma = $ideprograma;
+        $sql = "SELECT *
+    			FROM tbl_programas
+    			WHERE ideprograma = $this->intIdePrograma";
         $request = $this->select($sql);
         return $request;
     }
 
-    //ACTUALIZAR USUARIO
-    public function updateUsuario(
-        int $ideusuario,
-        string $identificacion,
-        string $rol,
-        string $status
+    //ACTUALIZAR PROGRAMA
+    public function updatePrograma(
+        int $idePrograma,
+        string $codigo,
+        string $nivel,
+        string $nombreprograma,
+        string $horasprograma
     ) {
 
-        $this->intIdeUsuario = $ideusuario;
-        $this->strIdentificacionUsuario = $identificacion;
-        $this->strRolUsuario = $rol;
-        $this->strStatus = $status;
+        $this->intIdePrograma = $idePrograma;
+        $this->strCodigoPrograma = $codigo;
+        $this->strNivelPrograma = $nivel;
+        $this->strNombrePrograma = $nombreprograma;
+        $this->strHorasPrograma = $horasprograma;
 
-        $sql = "SELECT * FROM tbl_usuarios WHERE (identificacion = '{$this->strIdentificacionUsuario}' AND ideusuario != $this->intIdeUsuario)
-        OR (rolid = '{$this->strRolUsuario}' AND ideusuario != $this->intIdeUsuario)";
+        $sql = "SELECT * FROM tbl_programas WHERE (codigoprograma = '{$this->strCodigoPrograma}' AND ideprograma != $this->intIdePrograma)
+        OR (nombreprograma = '{$this->strNombrePrograma}' AND ideprograma != $this->intIdePrograma)";
         $request != $this->select_all($sql);
 
         if (empty($request)) {
-            // TODO PENDIENTE LA VALIDACIÓN SI EL CODIGO ES IGUAL QUE EL CODIGO DE OTRO USUARIO
-            if (($this->strIdentificacionUsuario != "" OR $this->strIdentificacionUsuario !=  $this->strIdentificacionUsuario)) {
+            // TODO PENDIENTE LA VALIDACIÓN SI EL CODIGO ES IGUAL QUE EL CODIGO DE OTRO PROGRAMA
+            if (($this->strCodigoPrograma != "" OR $this->strCodigoPrograma !=  $this->strCodigoPrograma)) {
 
-                $sql = "UPDATE tbl_usuarios SET identificacion=?, rolid=?, status=?
-						WHERE ideusuario = $this->intIdeUsuario ";
+                $sql = "UPDATE tbl_programas SET codigoprograma=?, nivelprograma=?, nombreprograma=?, horasprograma=?
+						WHERE ideprograma = $this->intIdePrograma ";
 
                 $arrData = array(
-                    $this->strIdentificacionUsuario,
-                    $this->strRolUsuario,
-                    $this->strStatus
+                    $this->strCodigoPrograma,
+                    $this->strNivelPrograma,
+                    $this->strNombrePrograma,
+                    $this->strHorasPrograma
                 );
             } 
             $request = $this->update($sql, $arrData);
@@ -118,13 +110,16 @@ class ProgramasModel extends Mysql
         return $request;
     }
 
-    public function deleteUsuario(int $intIdeUsuario)
+    public function deletePrograma(int $intIdePrograma)
     {
-        $this->intIdeUsuario = $intIdeUsuario;
-        $sql = "UPDATE tbl_usuarios SET status = ? WHERE ideusuario = $this->intIdeUsuario ";
+        $this->intIdePrograma = $intIdePrograma;
+        $sql = "UPDATE tbl_programas SET status = ? WHERE ideprograma = $this->intIdePrograma ";
         $arrData = array(0);
         $request = $this->update($sql, $arrData);
         return $request;
     }
-*/
+
+
+    
+
 }

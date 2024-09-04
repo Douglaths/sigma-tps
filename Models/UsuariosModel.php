@@ -16,16 +16,6 @@ class UsuariosModel extends Mysql
         parent::__construct();
     }
 
-    // $this->intIdeUsuario;
-    // $this->strIdentificacionUsuario;
-    // $this->strNombresUsuario;
-    // $this->strApellidosUsuario;
-    // $this->strTelefonoUsuario;
-    // $this->strEmailUsuario;
-    // $this->strPassword;
-    // $this->strRolUsuario;
-    // $this->strStatusUsuario;
-
     
     public function insertUsuario(
         string $identificacion,
