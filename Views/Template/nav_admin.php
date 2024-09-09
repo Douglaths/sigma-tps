@@ -46,22 +46,24 @@
                     <i class="app-menu__icon bi bi-card-checklist"></i>
                     <span class="app-menu__label">Competencias</span></a></li>
 
-        <li><a class="app-menu__item" href="perfiles" data-toggle=><i class="app-menu__icon bi bi-person-circle"></i><span class="app-menu__label">Perfiles</span><i class=></i></a>
-        </li>
+                    <li><a class="app-menu__item " href="<?=base_url();?>/fichas">
+                    <i class="app-menu__icon bi bi-bookmark-star"></i>
+                    <span class="app-menu__label">Fichas</span></a></li>
 
-        <li><a class="app-menu__item" href="reportes" data-toggle=><i class="app-menu__icon bi bi-flag-fill"></i><span class="app-menu__label">Reportes</span><i class=></i></a>
-        </li>
+                    <li><a class="app-menu__item " href="<?=base_url();?>/asignaciones">
+                    <i class="app-menu__icon bi bi-check2-circle"></i>
+                    <span class="app-menu__label">Asignaciones</span></a></li>
 
-        <li><a class="app-menu__item" href="soporte" data-toggle=><i class="app-menu__icon bi bi-info-square-fill"></i><span class="app-menu__label">Soporte</span><i class=></i></a>
-        </li>
+                    <li><a class="app-menu__item" href="reportes" data-toggle=><i class="app-menu__icon bi bi-flag-fill"></i><span class="app-menu__label">Reportes</span><i class=></i></a>
+                    </li>
+
+                    <li><a class="app-menu__item" href="soporte" data-toggle=><i class="app-menu__icon bi bi-info-square-fill"></i><span class="app-menu__label">Soporte</span><i class=></i></a>
+                    </li>
 
 
-        <li>
-                <a class="bg-danger app-menu__item" href="<?=base_url();?>/logout">
+                  <li><a class="bg-danger app-menu__item" href="<?=base_url();?>/logout">
                     <i class="app-menu__icon bi bi-escape"></i>
-                    <span class="app-menu__label">Salir</span>
-                </a>
-            </li>
+                    <span class="app-menu__label">Salir</span></a></li>
         </ul>
 
     </aside>

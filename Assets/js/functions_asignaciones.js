@@ -3,7 +3,7 @@ let rowTable = "";
 let divLoading = document.querySelector("#divLoading");
 document.addEventListener('DOMContentLoaded', function(){
 
-    tableAsignaciones = $('#tableAsignaciones').dataTable( {
+    tableAsignaciones = $('#tableAsignaciones').DataTable( {
         "aProcessing":true,
         "aServerSide":true,
         "language": {
