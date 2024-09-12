@@ -14,15 +14,12 @@ document.addEventListener('DOMContentLoaded', function(){
             "dataSrc":""
         },
         "columns":[
-            {"data":"ideusuario"},
             {"data":"identificacion"},
             {"data":"nombres"},
-            {"data":"apellidos"},
-            {"data":"telefono"},
-            {"data":"email"},
             {"data":"nombrerol"},
             {"data":"status"},
             {"data":"options"}
+
         ],
         'dom': 'lBfrtip',
         'buttons': [
@@ -30,25 +27,25 @@ document.addEventListener('DOMContentLoaded', function(){
                 "extend": "copyHtml5",
                 "text": "<i class='far fa-copy'></i> Copiar",
                 "titleAttr":"Copiar",
-                "className": "btn btn-warning"
+                "className": "btn btn-warning mt-3"
             },{
                 "extend": "excelHtml5",
                 "text": "<i class='fas fa-file-excel'></i> Excel",
                 "titleAttr":"Exportar a Excel",
-                "className": "btn btn-success"
+                "className": "btn btn-success mt-3"
             },{
                 "extend": "pdfHtml5",
                 "text": "<i class='fas fa-file-pdf'></i> PDF",
                 "titleAttr":"Exportar a PDF",
-                "className": "btn btn-danger"
+                "className": "btn btn-danger mt-3"
             },{
                 "extend": "csvHtml5",
                 "text": "<i class='fas fa-file-csv'></i> CSV",
                 "titleAttr":"Exportar a CSV",
-                "className": "btn btn-info"
+                "className": "btn btn-info mt-3"
             }
         ],
-        "resonsieve":"true",
+        "responsive":"true",
         "bDestroy": true,
         "iDisplayLength": 10,
         "order":[[0,"desc"]]  
@@ -63,21 +60,22 @@ document.addEventListener('DOMContentLoaded', function(){
             var intIdeUsuario = document.querySelector('#ideUsuario').value;
             let strIdentificacionUsuario = document.querySelector('#txtIdentificacionUsuario').value;
             let strNombresUsuario = document.querySelector('#txtNombresUsuario').value;
-            let strApellidosUsuario = document.querySelector('#txtApellidosUsuario').value;
-            let strTelefonoUsuario = document.querySelector('#txtTelefonoUsuario').value;
-            let strEmailUsuario = document.querySelector('#txtEmailUsuario').value;
+            // $('#txtRolUsuario').picker();
+            // $('#txtRolUsuario').picker({search : true});
             let strRolUsuario = document.querySelector('#txtRolUsuario').value;
-            let intStatus = document.querySelector('#listStatus').value;
             
-            if(strIdentificacionUsuario == '' || strRolUsuario == '' || strNombresUsuario == '' || strApellidosUsuario == '' || strTelefonoUsuario == '' || strEmailUsuario == '')
+            $('#listStatus').picker();
+            let intStatus = document.querySelector('#listStatus').value;
+
+            if(strIdentificacionUsuario == '' || strNombresUsuario == '' || strRolUsuario == '')
             {
-                swal("Atención", "Todos los campos son obligatorios." , "error");
+                Swal.fire("Atención", "Todos los campos son obligatorios." , "error");
                 return false;
             }
             let elementsValid = document.getElementsByClassName("valid");
             for (let i = 0; i < elementsValid.length; i++) { 
                 if(elementsValid[i].classList.contains('is-invalid')) { 
-                    swal("Atención", "Por favor verifique los campos en rojo." , "error");
+                    Swal.fire("Atención", "Por favor verifique los campos en rojo." , "error");
                     return false;
                 } 
             } 
@@ -94,11 +92,12 @@ document.addEventListener('DOMContentLoaded', function(){
                     {
                         if(rowTable == ""){
                             tableUsuarios.api().ajax.reload();
+                            // tableUsuarios.DataTable().ajax.reload();
                         }else{
                             htmlStatus = intStatus == 1 ? 
                             '<span class="badge text-bg-success">Activo</span>' : 
                             '<span class="badge text-bg-danger">Inactivo</span>';
-                            tableUsuarios.api().ajax.reload();
+                            // tableUsuarios.api().ajax.reload();
                            rowTable.cells[1].textContent =  strIdentificacionUsuario;
                         //    rowTable.cells[2].textContent =  strRolUsuario;
                            rowTable.cells[2].textContent = document.querySelector("#txtRolUsuario").selectedOptions[0].text;
@@ -107,9 +106,9 @@ document.addEventListener('DOMContentLoaded', function(){
                         }
                         $('#modalFormUsuario').modal("hide");
                         formUsuario.reset();
-                        swal("Usuario", objData.msg ,"success");
+                        Swal.fire("Usuario", objData.msg ,"success");
                     }else{
-                        swal("Error", objData.msg , "error");
+                        Swal.fire("Error", objData.msg , "error");
                     }
                 }
                 divLoading.style.display = "none";
@@ -133,8 +132,9 @@ if(document.querySelector('#txtRolUsuario')){
     request.onreadystatechange = function(){
         if(request.readyState == 4 && request.status == 200){
             document.querySelector('#txtRolUsuario').innerHTML = request.responseText;
-            //$('#txtRolUsuario').selectpicker('render');
-            $('.txtRolUsuario').selectpicker('refresh');
+            $('#txtRolUsuario').picker({search : true});
+            // $('.txtRolUsuario').selectpicker('refresh');
+            // $('#txtRolUsuario').picker();
         }
     }
 }
@@ -157,13 +157,13 @@ function fntViewInfo(ideusuario){
 
                 document.querySelector("#celIdeUsuario").innerHTML = objData.data.ideusuario;
                 document.querySelector("#celIdentificacionUsuario").innerHTML = objData.data.identificacion;
+                document.querySelector("#celNombresUsuario").innerHTML = objData.data.nombres;
                 document.querySelector("#celRolUsuario").innerHTML = objData.data.rolid;
                 document.querySelector("#celEstadoUsuario").innerHTML = estadoUsuario;
-                // document.querySelector("#celNombrePrograma").innerHTML = objData.data.nombreprograma;
                 
                 $('#modalViewUsuario').modal('show');
             }else{
-                swal("Error", objData.msg , "error");
+                Swal.fire("Error", objData.msg , "error");
             }
         }
     }
@@ -187,12 +187,9 @@ function fntEditInfo(element, ideusuario){
             {
                 document.querySelector("#ideUsuario").value = objData.data.ideusuario;
                 document.querySelector("#txtIdentificacionUsuario").value = objData.data.identificacion;
-                document.querySelector("#txtNombresUsuario").value =objData.data.nombres;
-                document.querySelector("#txtApellidosUsuario").value =objData.data.apellidos;
-                document.querySelector("#txtTelefonoUsuario").value =objData.data.telefono;
-                document.querySelector("#txtEmailUsuario").value =objData.data.email;
+                document.querySelector("#txtNombresUsuario").value = objData.data.nombres;
                 document.querySelector("#txtRolUsuario").value =objData.data.idrol;
-
+                
                 // ESTADO ACTIVO O INACTIVO
                 if(objData.data.status == 1){
                     document.querySelector("#listStatus").value = 1;
@@ -207,19 +204,19 @@ function fntEditInfo(element, ideusuario){
 }
 
 function fntDelInfo(ideusuario){
-    swal({
-        title: "Eliminar Usuario",
-        text: "¿Realmente quiere eliminar al Usuario?",
-        type: "warning",
+    Swal.fire({
+        title: "Eliminar la Asignación",
+        text: "¿Estás seguro?",
+        imageUrl: "Assets/images/iconos/eliminar.png" ,
         showCancelButton: true,
-        confirmButtonText: "Si, eliminar!",
-        cancelButtonText: "No, cancelar!",
+        confirmButtonColor: "#DD6B55",
+        cancelButtonColor: "#00A6FF",
+        confirmButtonText: "Eliminar",
+        cancelButtonText: "Cancelar",
         closeOnConfirm: false,
         closeOnCancel: true
-    }, function(isConfirm) {
-        
-        if (isConfirm) 
-        {
+      }).then((result) => {
+        if (result.isConfirmed) {
             let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
             let ajaxUrl = base_url+'/Usuarios/delUsuario';
             let strData = "ideUsuario="+ideusuario;
@@ -231,10 +228,10 @@ function fntDelInfo(ideusuario){
                     let objData = JSON.parse(request.responseText);
                     if(objData.status)
                     {
-                        swal("Eliminar!", objData.msg , "success");
+                        Swal.fire("Eliminar!", objData.msg , "success");
                         tableUsuarios.api().ajax.reload();
                     }else{
-                        swal("Atención!", objData.msg , "error");
+                        Swal.fire("Atención!", objData.msg , "error");
                     }
                 }
             }
@@ -243,6 +240,12 @@ function fntDelInfo(ideusuario){
     });
 
 }
+
+document.addEventListener('DOMContentLoaded', function () {
+    console.log('La página está completamente cargada');
+    var myModal = new bootstrap.Modal(document.getElementById('modalFormUsuario'));
+    // myModal.show();
+});
 
 
 function openModal()

@@ -29,7 +29,8 @@ headerAdmin($data);
                                     <th class="text-center">Código </th>
                                     <th class="text-center">Nombre</th>
                                     <th class="text-center">Horas</th>
-                                    <th class="text-center">Código Programa</th>
+                                    <th class="text-center">Avance</th>
+                                    <th class="text-center">Ficha</th>
                                     <th class="text-center">Acciones</th>
                                 </tr>
                             </thead>
@@ -42,6 +43,7 @@ headerAdmin($data);
         </div>
     </div>
 </main>
-<?php footerAdmin($data);
+<?php 
 getModal('modalCompetencias', $data);
+footerAdmin($data);
 ?>

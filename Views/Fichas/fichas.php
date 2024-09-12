@@ -1,5 +1,6 @@
 <?php
 headerAdmin($data);
+getModal('modalFichas', $data);
 ?>
 <div id="contentAjax"></div>
 <main class="app-content">
@@ -42,7 +43,7 @@ headerAdmin($data);
         </div>
     </div>
 </main>
-<?php footerAdmin($data);
-getModal('modalFichas', $data);
-// getModal('modalFichasAsignar', $data);
+<?php 
+
+footerAdmin($data);
 ?>

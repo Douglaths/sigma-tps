@@ -11,7 +11,7 @@ class Usuarios extends Controllers
             header('Location: ' . base_url() . '/login');
             die();
         }
-        getPermisos(RADMINISTRADOR);
+        getPermisos(MUSUARIOS);
     }
 
     public function Usuarios()
@@ -36,9 +36,6 @@ class Usuarios extends Controllers
                 $intIdeUsuario = intval($_POST['ideUsuario']);
                 $strIdentificacionUsuario = strClean($_POST['txtIdentificacionUsuario']);
                 $strNombresUsuario = strClean($_POST['txtNombresUsuario']);
-                $strApellidosUsuario = strClean($_POST['txtApellidosUsuario']);
-                $strTelefonoUsuario = intval($_POST['txtTelefonoUsuario']);
-                $strEmailUsuario = strClean($_POST['txtEmailUsuario']);
                 $strRolUsuario = intval(strClean($_POST['txtRolUsuario']));
                 $intStatus = intval(strClean($_POST['listStatus']));
 
@@ -51,12 +48,10 @@ class Usuarios extends Controllers
                         $request_user = $this->model->insertUsuario(
                             $strIdentificacionUsuario,
                             $strNombresUsuario,
-                            $strApellidosUsuario,
-                            $strTelefonoUsuario,
-                            $strEmailUsuario,
                             $strPassword,
                             $strRolUsuario,
                             $intStatus
+
                         );
                     }
                 } else {
@@ -67,12 +62,8 @@ class Usuarios extends Controllers
                             $intIdeUsuario,
                             $strIdentificacionUsuario,
                             $strNombresUsuario,
-                            $strApellidosUsuario,
-                            $strTelefonoUsuario,
-                            $strEmailUsuario,
                             $strRolUsuario,
-                            $intStatus,
-                            $strPassword
+                            $intStatus
                         );
                     }
                 }
@@ -110,14 +101,25 @@ class Usuarios extends Controllers
                 }
 
                 if ($_SESSION['permisosMod']['r']) {
-                    $btnView = '<button class="btn btn-info btn-sm" onClick="fntViewInfo(' . $arrData[$i]['ideusuario'] . ')" title="Ver Usuario"><i class="far fa-eye"></i></button>';
+                    $btnView = '<button class="btn btn-info" onClick="fntViewInfo(' . $arrData[$i]['ideusuario'] . ')" title="Ver Usuario"><i class="bi bi-eye"></i></button>';
                 }
                 if ($_SESSION['permisosMod']['u']) {
-                    $btnEdit = '<button class="btn btn-warning  btn-sm" onClick="fntEditInfo(this,' . $arrData[$i]['ideusuario'] . ')" title="Editar Usuario"><i class="fas fa-pencil-alt"></i></button>';
+                    $btnEdit = '<button class="btn btn-warning" onClick="fntEditInfo(this,' . $arrData[$i]['ideusuario'] . ')" title="Editar Usuario"><i class="bi bi-pencil"></i></button>';
                 }
-                if ($_SESSION['permisosMod']['d']) {
-                    $btnDelete = '<button class="btn btn-danger btn-sm btnDelRol" onClick="fntDelInfo(' . $arrData[$i]['ideusuario'] . ')" title="Eliminar Usuario"><i class="bi bi-trash3"></i></button>';
+                // if ($_SESSION['permisosMod']['d']) {
+                //     $btnDelete = '<button class="btn btn-danger btn-sm btnDelRol" onClick="fntDelInfo(' . $arrData[$i]['ideusuario'] . ')" title="Eliminar Usuario"><i class="bi bi-trash3"></i></button>';
        
+                // }
+
+                if($_SESSION['permisosMod']['d']){
+                    if(($_SESSION['idUser'] == 1 and $_SESSION['userData']['idrol'] == 1) ||
+                        ($_SESSION['userData']['idrol'] == 1 and $arrData[$i]['idrol'] != 1) and
+                        ($_SESSION['userData']['ideusuario'] != $arrData[$i]['ideusuario'] )
+                         ){
+                            $btnDelete = '<button class="btn btn-danger btnDelRol" onClick="fntDelInfo(' . $arrData[$i]['ideusuario'] . ')" title="Eliminar Usuario"><i class="bi bi-trash3"></i></button>';
+                    }else{
+                        $btnDelete = '<button class="btn btn-secondary" disabled ><i class="bi bi-trash3"></i></button>';
+                    }
                 }
 
                 $arrData[$i]['options'] = '<div class="text-center">' . $btnView . ' ' . $btnEdit . ' ' . $btnDelete . '</div>';

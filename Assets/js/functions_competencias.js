@@ -14,11 +14,11 @@ document.addEventListener('DOMContentLoaded', function(){
             "dataSrc":""
         },
         "columns":[
-            // {"data":"idecompetencia"},
             {"data":"codigocompetencia"},
             {"data":"nombrecompetencia"},
             {"data":"horascompetencia"},
-            {"data":"programacodigo"},
+            {"data":"avancehorascompetencia"},
+            {"data":"numeroficha"},
             {"data":"options"}
 
         ],
@@ -61,22 +61,21 @@ document.addEventListener('DOMContentLoaded', function(){
             e.preventDefault();
             var intIdeCompetencia = document.querySelector('#ideCompetencia').value;
             let strCodigoCompetencia = document.querySelector('#txtCodigoCompetencia').value;
+            let strTipoCompetencia = document.querySelector('#txtTipoCompetencia').value;
             let strNombreCompetencia = document.querySelector('#txtNombreCompetencia').value;
             let strHorasCompetencia = document.querySelector('#txtHorasCompetencia').value;
-            
-            // let strListadoProgramas = document.querySelector('#ListadoProgramas').value;
             let strCodigoPrograma = document.querySelector('#txtCodigoPrograma').value;
-            let strNombrePrograma= document.querySelector('#txtNombrePrograma').value;
+            let strNombrePrograma= document.querySelector('#txtIdePrograma').value;
 
             if(strCodigoCompetencia == '' || strNombreCompetencia == '' || strNombrePrograma == '')
             {
-                swal("Atención", "Todos los campos son obligatorios." , "error");
+                Swal.fire("Atención", "Todos los campos son obligatorios." , "error");
                 return false;
             }
             let elementsValid = document.getElementsByClassName("valid");
             for (let i = 0; i < elementsValid.length; i++) { 
                 if(elementsValid[i].classList.contains('is-invalid')) { 
-                    swal("Atención", "Por favor verifique los campos no estén vacíos" , "error");
+                    Swal.fire("Atención", "Por favor verifique los campos no estén vacíos" , "error");
                     return false;
                 } 
             } 
@@ -100,9 +99,9 @@ document.addEventListener('DOMContentLoaded', function(){
                         }
                         $('#modalFormCompetencia').modal("hide");
                         formCompetencia.reset();
-                        swal("Competencia", objData.msg ,"success");
+                        Swal.fire("Competencia", objData.msg ,"success");
                     }else{
-                        swal("Error", objData.msg , "error");
+                        Swal.fire("Error", objData.msg , "error");
                     }
                 }
                 divLoading.style.display = "none";
@@ -132,13 +131,13 @@ function fntViewInfo(idecompetencia){
                 // document.querySelector("#celIdeCompetencia").innerHTML = objData.data.idecompetencia;
                 document.querySelector("#celCodigoCompetencia").innerHTML = objData.data.codigocompetencia;
                 document.querySelector("#celNombreCompetencia").innerHTML = objData.data.nombrecompetencia;
+                document.querySelector("#celTipoPrograma").innerHTML = objData.data.tipocompetencia;
                 document.querySelector("#celHorasCompetencia").innerHTML = objData.data.horascompetencia;
-                document.querySelector("#celCodigoPrograma").innerHTML = objData.data.codigoprograma;
                 document.querySelector("#celNombrePrograma").innerHTML = objData.data.nombreprograma;
                 
                 $('#modalViewCompetencia').modal('show');
             }else{
-                swal("Error", objData.msg , "error");
+                Swal.fire("Error", objData.msg , "error");
             }
         }
     }
@@ -226,7 +225,7 @@ function fntEditInfo(element, idecompetencia){
                 // option.value = objData.data.codigoprograma;
                 // select.appendChild(option);
 
-                document.querySelector("#txtNombrePrograma").value =objData.data.nombreprograma;
+                document.querySelector("#txtIdePrograma").value =objData.data.ideprograma;
                 
             }
         }
@@ -238,20 +237,19 @@ function fntEditInfo(element, idecompetencia){
 
 
 function fntDelInfo(idecompetencia){
-    swal({
-        title: "Eliminar Competencia",
-        text: "¿Esta seguro que desea eliminar la competencia?",
+    Swal.fire({
+        title: "Eliminar Programa",
+        text: "¿Está seguro?",
         imageUrl: "Assets/images/iconos/eliminar.png" ,
         showCancelButton: true,
         confirmButtonColor: "#DD6B55",
+        cancelButtonColor: "#00A6FF",
         confirmButtonText: "Eliminar",
         cancelButtonText: "Cancelar",
         closeOnConfirm: false,
         closeOnCancel: true
-    }, function(isConfirm) {
-        
-        if (isConfirm) 
-        {
+      }).then((result) => {
+        if (result.isConfirmed) {
             let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
             let ajaxUrl = base_url+'/Competencias/delCompetencia';
             let strData = "ideCompetencia="+idecompetencia;
@@ -263,10 +261,10 @@ function fntDelInfo(idecompetencia){
                     let objData = JSON.parse(request.responseText);
                     if(objData.status)
                     {
-                        swal("Eliminar!", objData.msg , "success");
+                        Swal.fire("Eliminar!", objData.msg , "success");
                         tableCompetencias.api().ajax.reload();
                     }else{
-                        swal("Atención!", objData.msg , "error");
+                        Swal.fire("Atención!", objData.msg , "error");
                     }
                 }
             }
@@ -303,11 +301,10 @@ function fntViewInfoCodigoPrograma(codprograma){
             let objData = JSON.parse(request.responseText);
             if(objData.status)
             {
-                document.getElementById('txtNombrePrograma').value = objData.data.nombreprograma;
-                // document.getElementById('txtNombrePrograma').innerHTML = objData.data.nombreprograma;
+                document.getElementById('txtIdePrograma').value = objData.data.ideficha;
    
             }else{
-                document.getElementById("txtNombrePrograma").value = '';
+                document.getElementById("txtIdePrograma").value = '';
             }
         }
     }

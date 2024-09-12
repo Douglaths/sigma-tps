@@ -105,7 +105,8 @@ $no++;
                                 </div>
 
                                 <div class="text-center">
-                                    <button class="btn btn-success" type="submit"><i class="bi bi-send"></i>
+                                    <button class="btn btn-success" type="submit">
+                                        <i class="bi bi-floppy"></i>
                                         Guardar</button>
                                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i
                                             class="bi bi-x-lg"></i>Cancelar</button>

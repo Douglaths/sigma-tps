@@ -1,7 +1,7 @@
 <?php
 headerAdmin($data);
+getModal('modalProgramas', $data);
 ?>
-
 <div id="contentAjax"></div>
 <main class="app-content">
     <div class="app-title">
@@ -44,6 +44,7 @@ headerAdmin($data);
         </div>
     </div>
 </main>
-<?php footerAdmin($data);
-getModal('modalProgramas', $data);
+<?php 
+
+footerAdmin($data);
 ?>

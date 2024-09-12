@@ -1,6 +1,6 @@
 <!-- Modal -->
-<div class="modal fade" id="modalFormUsuario" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-    role="dialog" aria-hidden="true">
+<div class="modal fade" id="modalFormUsuario" tabindex="-1" aria-labelledby="modalFormUsuario" aria-hidden="true"
+    data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
 
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -31,45 +31,20 @@
                             </div>
 
                             <div class="modal-body">
-                                <label for="txtNombresUsuario"">Nombres<span class="
-                                    required">*</span></label>
+                                <label for="txtNombresUsuario"">Nombres<span class=" required">*</span></label>
                                 <input type="text" class="form-control valid validText" id="txtNombresUsuario"
-                                    name="txtNombresUsuario" required="" maxlength="32"
-                                    onkeypress="return controlTag(event);">
-                            </div>
-                            <div class="modal-body">
-                                <label for="txtApellidosUsuario">Apellidos<span class="
-                                    required">*</span></label>
-                                <input type="text" class="form-control valid validText" id="txtApellidosUsuario"
-                                    name="txtApellidosUsuario" required="" maxlength="32"
-                                    onkeypress="return controlTag(event);">
-                            </div>
-                            <div class="modal-body">
-                                <label for="txtTelefonoUsuario">Telefono<span class="
-                                    required">*</span></label>
-                                <input type="text" class="form-control valid validText" id="txtTelefonoUsuario"
-                                    name="txtTelefonoUsuario" required="" maxlength="32"
-                                    onkeypress="return controlTag(event);">
-                            </div>
-                            <div class="modal-body">
-                                <label for="txtEmailUsuario">Email<span class="
-                                    required">*</span></label>
-                                <input type="text" class="form-control valid validText" id="txtEmailUsuario"
-                                    name="txtEmailUsuario" required="" maxlength="32"
-                                    onkeypress="return controlTag(event);">
+                                    name="txtNombresUsuario" required="" maxlength="30">
                             </div>
 
-                            <div class="modal-body">
-                                <label for="txtRolUsuario">Rol</label>
-                                <select class="form-select selectpicker show-tick" id="txtRolUsuario"
-                                    name="txtRolUsuario" data-live-search="true" data-style="btn-success" required>
+                            <div class="modal-body mb-3">
+                                <label for="txtRolUsuario">Selecciona el Rol</label>
+                                <select class="form-control selectpicker" id="txtRolUsuario" name="txtRolUsuario">
                                 </select>
                             </div>
 
-                            <div class="modal-body">
+                            <div class="modal-body form-select-lg mb-3">
                                 <label for="listStatus">Estado</label>
-                                <select class="form-select selectpicker" data-style="btn-success" id="listStatus"
-                                    name="listStatus" required>
+                                <select class="form-select" id="listStatus" name="listStatus">
                                     <option value="1">Activo</option>
                                     <option value="2">Inactivo</option>
                                 </select>
@@ -77,7 +52,8 @@
 
                             <div class="modal-footer">
                                 <button id="btnActionForm" class="btn btn-success" type="submit"><i
-                                        class="bi bi-send"></i><span id="btnText">Guardar</span></button>
+                                        class="bi bi-floppy"></i>
+                                    <span id="btnText">Guardar</span></button>
 
                                 <button class="btn btn-danger" type="button" data-bs-dismiss="modal"><i
                                         class="bi bi-x-lg"></i>Cerrar</button>
@@ -117,6 +93,10 @@
                                     <td id="celIdentificacionUsuario">233104</td>
                                 </tr>
                                 <tr>
+                                    <td>Nombres:</td>
+                                    <td id="celNombresUsuario">233104</td>
+                                </tr>
+                                <tr>
                                     <td>Rol:</td>
                                     <td id="celRolUsuario">2875079</td>
                                 </tr>
@@ -135,3 +115,5 @@
                 </div>
             </div>
         </div>
+    </div>
+</div>

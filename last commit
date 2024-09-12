@@ -1,0 +1,47 @@
+[33mcommit 8ef86327254a3d3e3b3e8713a26509b2495eec3c[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m
+Author: Douglaths <douglathsmelo@gmail.com>
+Date:   Mon Sep 9 14:52:17 2024 -0500
+
+    empezaremos a modificar para solucionar modulos, guardamos antes de
+
+[33mcommit a993e7bc9dbef0978b625d2b6b8e016a8eb2c060[m
+Author: Douglaths <douglathsmelo@gmail.com>
+Date:   Wed Sep 4 17:00:22 2024 -0500
+
+    recta final, cargue final de archivos con programas funcionando
+
+[33mcommit 8eef91a0c1aa7d426e41e3b8abaf6ec4edcba749[m
+Author: Douglaths <douglathsmelo@gmail.com>
+Date:   Wed Sep 4 02:18:22 2024 -0500
+
+    ya solucionamos roles, ahora vamos para programas
+
+[33mcommit fa6871f2c93e84d9bc7651bf0d3b52bb2d414c66[m
+Author: Douglaths <douglathsmelo@gmail.com>
+Date:   Tue Sep 3 20:33:23 2024 -0500
+
+    realizando la configuración compartida por el instructor
+
+[33mcommit 1b0d27617d06440351b1a40d6b778ab546cede55[m
+Author: Douglaths <douglathsmelo@gmail.com>
+Date:   Tue Sep 3 20:19:29 2024 -0500
+
+    hasta donde funcionaba para los puntos del martes, usuarios, boton de eliminar para el rol administrador, y creo que ya
+
+[33mcommit 9a1fd8f9c76fb7df7c1bdbb37875968f6aa49ddc[m
+Author: Douglaths <douglathsmelo@gmail.com>
+Date:   Tue Sep 3 01:18:07 2024 -0500
+
+    para presentar en clase, con el programa funcionando pero solo la vista
+
+[33mcommit e5649ae14d887df5533cbea9fe3a713f06783d15[m
+Author: Douglaths <douglathsmelo@gmail.com>
+Date:   Wed Aug 28 19:43:48 2024 -0500
+
+    Usuarios select funcionando
+
+[33mcommit 5a8b13e7c5fb18f4847a75a68f84e24be96d41e0[m
+Author: Douglaths <douglathsmelo@gmail.com>
+Date:   Wed Aug 28 19:42:27 2024 -0500
+
+    first commit

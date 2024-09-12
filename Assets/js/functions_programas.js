@@ -65,13 +65,13 @@ document.addEventListener('DOMContentLoaded', function(){
 
             if(strCodigoPrograma == '' || strNombrePrograma == '')
             {
-                swal("Atención", "Todos los campos son obligatorios." , "error");
+                Swal.fire("Atención", "Todos los campos son obligatorios." , "error");
                 return false;
             }
             let elementsValid = document.getElementsByClassName("valid");
             for (let i = 0; i < elementsValid.length; i++) { 
                 if(elementsValid[i].classList.contains('is-invalid')) { 
-                    swal("Atención", "Por favor verifique los campos en rojo." , "error");
+                    Swal.fire("Atención", "Por favor verifique los campos en rojo." , "error");
                     return false;
                 } 
             } 
@@ -94,9 +94,9 @@ document.addEventListener('DOMContentLoaded', function(){
                         }
                         $('#modalFormPrograma').modal("hide");
                         formPrograma.reset();
-                        swal("Programas", objData.msg ,"success");
+                        Swal.fire("Programas", objData.msg ,"success");
                     }else{
-                        swal("Error", objData.msg , "error");
+                        Swal.fire("Error", objData.msg , "error");
                     }
                 }
                 divLoading.style.display = "none";
@@ -127,7 +127,7 @@ function fntViewInfo(ideprograma){
                 
                 $('#modalViewPrograma').modal('show');
             }else{
-                swal("Error", objData.msg , "error");
+                Swal.fire("Error", objData.msg , "error");
             }
         }
     }
@@ -162,20 +162,19 @@ function fntEditInfo(element, ideprograma){
 }
 
 function fntDelInfo(ideprograma){
-    swal({
+    Swal.fire({
         title: "Eliminar Programa",
-        text: "¿Esta seguro que desea eliminar el programa?",
+        text: "¿Está seguro?",
         imageUrl: "Assets/images/iconos/eliminar.png" ,
         showCancelButton: true,
         confirmButtonColor: "#DD6B55",
+        cancelButtonColor: "#00A6FF",
         confirmButtonText: "Eliminar",
         cancelButtonText: "Cancelar",
         closeOnConfirm: false,
         closeOnCancel: true
-    }, function(isConfirm) {
-        
-        if (isConfirm) 
-        {
+      }).then((result) => {
+        if (result.isConfirmed) {
             let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
             let ajaxUrl = base_url+'/Programas/delPrograma';
             let strData = "idePrograma="+ideprograma;
@@ -187,10 +186,10 @@ function fntDelInfo(ideprograma){
                     let objData = JSON.parse(request.responseText);
                     if(objData.status)
                     {
-                        swal("Eliminar!", objData.msg , "success");
+                        Swal.fire("Eliminar!", objData.msg , "success");
                         tableProgramas.api().ajax.reload();
                     }else{
-                        swal("Atención!", objData.msg , "error");
+                        Swal.fire("Atención!", objData.msg , "error");
                     }
                 }
             }
