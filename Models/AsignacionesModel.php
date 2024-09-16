@@ -58,14 +58,34 @@ class AsignacionesModel extends Mysql
     {
         // $sql = "SELECT * FROM tbl_fichas WHERE status != 0";
 
-        $sql = "SELECT tdf.idedetalleficha,tdf.programaficha,tdf.ideinstructor,tdf.idecompetencia,tdf.cantidadhoras,tdf.mes,tdf.status,tf.ideficha,tf.codigoprograma,tf.fichaprograma,tf.ideinstructor,tf.status,tu.identificacion,tu.nombres,tu.password,tu.imgperfil,tu.rolid,tu.status
-        
-        FROM tbl_detalle_fichas  tdf 
-        INNER JOIN tbl_fichas tf
-        ON tf.fichaprograma = tdf.programaficha
-        INNER JOIN tbl_usuarios tu
-        ON tu.identificacion = tdf.ideinstructor
-        WHERE tdf.status != 0";
+        $sql = "SELECT 
+        tf.ideficha, 
+        tf.numeroficha, 
+        tf.status, 
+        tu.ideusuario, 
+        tu.identificacion, 
+        tu.nombres, 
+        tu.imgperfil, 
+        tu.status, 
+        tc.idecompetencia, 
+        tc.codigocompetencia, 
+        tc.tipocompetencia, 
+        tc.nombrecompetencia, 
+        tc.horascompetencia, 
+        tc.status, 
+        tdc.cantidadhorasasignadas, 
+        tdc.idedetallecompetencia, 
+        tdc.mesasignacion,
+        tdc.status
+    FROM 
+        tbl_fichas AS tf
+    INNER JOIN 
+        tbl_usuarios AS tu ON tf.usuarioide = tu.ideusuario
+    INNER JOIN 
+        tbl_competencias AS tc ON tf.ideficha = tc.fichaide
+    INNER JOIN 
+        tbl_detalle_competencias AS tdc ON tc.idecompetencia = tdc.competenciaide 
+        WHERE tdc.status !=0";
 
 
         $request = $this->select_all($sql);

@@ -127,9 +127,9 @@ class CompetenciasModel extends Mysql
                 ON tf.ideficha = tc.fichaide 
                 INNER JOIN tbl_programas  tp
                 ON tp.ideprograma = tf.ideficha
-                INNER JOIN tbl_detalle_temp_competencias  tdtc
-                ON tdtc.competenciaide = tc.idecompetencia 
-                WHERE tc.status != 0";
+                LEFT JOIN 
+    tbl_detalle_temp_competencias tdtc ON tdtc.competenciaide = tc.idecompetencia 
+                WHERE tc.status != 0;";
 
                 $request = $this->select_all($sql);
                 return $request;

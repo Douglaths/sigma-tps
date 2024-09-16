@@ -144,6 +144,7 @@ class Competencias extends Controllers
                 $avancehorascompetencia = ($arrData[$i]['avancehorascompetencia'] * 100) / 100;
 
                 // Si el porcentaje está entre 0 y 49
+               if(($avancehorascompetencia)!= 0){
                 if ($avancehorascompetencia >= 0 && $avancehorascompetencia <= 49) {
                     $arrData[$i]['avancehorascompetencia'] = '<div class="progress" role="progressbar" aria-label="Danger example" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
                     <div class="progress-bar bg-danger" style="width: ' . $avancehorascompetencia . '%">' . $avancehorascompetencia . '%</div>
@@ -159,6 +160,10 @@ class Competencias extends Controllers
                     <div class="progress-bar bg-success" style="width: ' . $arrData[$i]['avancehorascompetencia'] . '%">' . $arrData[$i]['avancehorascompetencia'] . '%</div>
                     </div>';
                 }
+               }
+               else{
+                $arrData[$i]['avancehorascompetencia'] = "<i class='bi bi-info-circle-fill'></i><td>  no existe avance </td>";
+               }
 
                 if ($_SESSION['permisosMod']['r']) {
                     $btnView = '<button class="btn btn-info" onClick="fntViewInfo(' . $arrData[$i]['idecompetencia'] . ')" title="Ver Competencia"><i class="bi bi-eye"></i></button>';

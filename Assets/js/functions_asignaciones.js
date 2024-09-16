@@ -14,11 +14,11 @@ document.addEventListener('DOMContentLoaded', function(){
             "dataSrc":""
         },
         "columns":[
-            {"data":"programaficha"},
+            {"data":"numeroficha"},
             {"data":"nombres"},
             {"data":"idecompetencia"},
-            {"data":"cantidadhoras"},
-            {"data":"mes"},
+            {"data":"horascompetencia"},
+            {"data":"mesasignacion"},
             {"data":"options"}
 
         ],
